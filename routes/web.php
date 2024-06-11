@@ -31,9 +31,12 @@ Route::middleware([
 Route::get('/home', [AdminController::class,'index']);
 
 
-
+//Category
 Route::get('/category_page', [AdminController::class,'category_page']);
 Route::post('/add_category', [AdminController::class,'add_category']);
 Route::get('/cat_delete/{id}', [AdminController::class,'cat_delete']);
 Route::get('/edit_cat/{id}', [AdminController::class,'edit_cat']);
 Route::post('/update_cat/{id}', [AdminController::class,'update_cat']);
+
+//Books
+Route::get('/add_book', [AdminController::class,'add_book']);

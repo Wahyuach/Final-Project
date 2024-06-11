@@ -24,6 +24,8 @@ class AdminController extends Controller
         }
     }
 
+
+    //CATEGORY
     public function category_page()
     {
         $data = Category::all();
@@ -38,21 +40,18 @@ class AdminController extends Controller
 
         return redirect()->back()->with('message', 'Category Added Successfully');
     }
-
     public function cat_delete($id)
     {
         $data = Category::find($id);
         $data->delete();
         return redirect()->back()->with('message', 'Category Deleted Successfully');
     }
-
     public function edit_cat($id)
     {
         $data = Category::find($id);
 
         return view('admin.edit_cat', compact('data'));
     }
-
     public function update_cat(Request $request, $id)
     {
         $data = Category::find($id);
@@ -60,5 +59,11 @@ class AdminController extends Controller
         $data->save();
 
         return Redirect('/category_page')->with('message', 'Category Updated Successfully');
+    }
+
+    //BOOKS
+    public function add_book(Request $request)
+    {
+        return view('admin.add_book');
     }
 }
