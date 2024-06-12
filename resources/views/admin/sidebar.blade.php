@@ -10,7 +10,7 @@
         <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Books</a>
           <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
             <li><a href="{{url('add_book')}}">Add Books</a></li>
-            <li><a href="#">Page</a></li>
+            <li><a href="{{url('show_book')}}">Update Books</a></li>
             <li><a href="#">Page</a></li>
           </ul>
         </li>
