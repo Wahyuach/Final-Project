@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use App\Models\Book;
+use App\Models\Borrow;
 
 
 class AdminController extends Controller
@@ -17,13 +18,28 @@ class AdminController extends Controller
             $user_type = Auth()->user()->usertype;
 
             if ($user_type == 'admin') {
-                return view('admin.index');
+                $user =User::all()->count();
+                $book =Book::all()->count();
+
+                $borrow =Borrow::where('status','Approved')->count();
+                $return =Borrow::where('status','Returned')->count();
+
+
+                return view('admin.index',compact('user','book','borrow','return'));
             } else if ($user_type == 'user') {
-                return view('home.index');
+                $data = Book::all();
+                return view('home.index', compact('data'));
             }
         } else {
             redirect()->back();
         }
+    }
+
+
+    public function borrow_request()
+    {
+        $data = Borrow::all();
+        return view('admin.borrow_request', compact('data'));
     }
 
 
@@ -137,6 +153,54 @@ class AdminController extends Controller
 
         $data->save();
 
-        return redirect('/show_book')->back()->with('message', 'Books Updated Successfully');
+        return redirect('/show_book')->with('message', 'Books Updated Successfully');
     }
+
+
+    public function approve_b($id)
+    {
+        $data = Borrow::find($id);
+        $status = $data->status; 
+        $data->status = 'Approved';
+        $data->save();
+
+        $bookid = $data->book_id;
+        $book = Book::find($bookid);
+        $book_qty = $book->quantity - '1';
+        $book->quantity= $book_qty;
+
+        $book->save();
+
+        return redirect()->to('/borrow_request'); 
+    }
+
+    public function reject_b($id)
+    {
+        $data = Borrow::find($id);
+
+        $data->status = 'Rejected';
+        $data->save();
+
+        return redirect()->to('/borrow_request'); 
+    }
+
+    public function returned_b($id)
+    {
+        $data = Borrow::find($id);
+
+        $data->status = 'Returned';
+        $data->save();
+
+        $bookid = $data->book_id;
+        $book = Book::find($bookid);
+        $book_qty = $book->quantity + '1';
+        $book->quantity= $book_qty;
+
+        $book->save();
+
+        return redirect()->to('/borrow_request'); 
+    }
+
+
+
 }

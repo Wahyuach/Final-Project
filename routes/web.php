@@ -14,7 +14,11 @@ use App\Http\Controllers\HomeController;;
 |
 */
 
-Route::get('/', [HomeController::class,'index']);
+
+//HOME
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/book_details/{id}', [HomeController::class, 'book_details']);
+Route::get('/borrow_books/{id}', [HomeController::class, 'borrow_books']);
 
 
 Route::middleware([
@@ -28,22 +32,39 @@ Route::middleware([
 });
 
 
-Route::get('/home', [AdminController::class,'index']);
+Route::get('/home', [AdminController::class, 'index']);
 
 
 //Category
-Route::get('/category_page', [AdminController::class,'category_page']);
-Route::post('/add_category', [AdminController::class,'add_category']);
-Route::get('/cat_delete/{id}', [AdminController::class,'cat_delete']);
-Route::get('/edit_cat/{id}', [AdminController::class,'edit_cat']);
-Route::post('/update_cat/{id}', [AdminController::class,'update_cat']);
+Route::get('/category_page', [AdminController::class, 'category_page']);
+Route::post('/add_category', [AdminController::class, 'add_category']);
+Route::get('/cat_delete/{id}', [AdminController::class, 'cat_delete']);
+Route::get('/edit_cat/{id}', [AdminController::class, 'edit_cat']);
+Route::post('/update_cat/{id}', [AdminController::class, 'update_cat']);
 
 //Books
-Route::get('/add_book', [AdminController::class,'add_book']);
-Route::post('/store_book', [AdminController::class,'store_book']);
-Route::get('/show_book', [AdminController::class,'show_book']);
-Route::get('/delete_book/{id}', [AdminController::class,'delete_book']);
-Route::get('/edit_book/{id}', [AdminController::class,'edit_book']);
-Route::post('/update_book/{id}', [AdminController::class,'update_book']);
+Route::get('/add_book', [AdminController::class, 'add_book']);
+Route::post('/store_book', [AdminController::class, 'store_book']);
+Route::get('/show_book', [AdminController::class, 'show_book']);
+Route::get('/delete_book/{id}', [AdminController::class, 'delete_book']);
+Route::get('/edit_book/{id}', [AdminController::class, 'edit_book']);
+Route::post('/update_book/{id}', [AdminController::class, 'update_book']);
+
+
+Route::get('/borrow_request', [AdminController::class, 'borrow_request']);
+
+Route::get('/approve_b/{id}', [AdminController::class, 'approve_b']);
+Route::get('/reject_b/{id}', [AdminController::class, 'reject_b']);
+Route::get('/returned_b/{id}', [AdminController::class, 'returned_b']);
+
+
+Route::get('/book_histoire', [HomeController::class, 'book_histoire']);
+
+
+Route::get('/cancel_req/{id}', [HomeController::class, 'cancel_req']);
+
+Route::get('/explore', [HomeController::class, 'explore']);
+
+
 
 

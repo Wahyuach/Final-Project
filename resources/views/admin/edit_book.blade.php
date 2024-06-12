@@ -46,7 +46,15 @@
 
 
                 <div class="div_deg">
+                    <div>
 
+                        @if (session()->has('message'))
+                            <div class="alert alert-success">
+                                {{ session()->get('message') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                            </div>
+                        @endif
+                    </div>
                     <h2 class="title_deg">Update Category</h2>
 
                     <form action="{{url('update_book', $data->id)}}" method="POST" enctype="multipart/form-data">
@@ -61,7 +69,7 @@
                         </div>
                         <div class="div_pad">
                             <label>Quantity</label>
-                            <input type="text" name="quantity" value="{{ $data->quantity }}">
+                            <input type="number" name="quantity" value="{{ $data->quantity }}">
                         </div>
                         <div class="div_pad">
                             <label class="textarea">Description</label>

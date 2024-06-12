@@ -2,15 +2,19 @@
 <html lang="en">
 
 <head>
-@include('home.css')
+
+    @include('home.css')
 </head>
+
 <body>
-@include('home.header')
-    @include('home.category')
+    @include('home.header')
 
-    @include('home.book')
+    <br>
+    <br>
+  
+        @include('home.book')
 
-@include('home.footer')
+        @include('home.footer')
 </body>
 
 </html>
