@@ -26,8 +26,6 @@
                     <ul class="nav">
                         <li><a href="{{url('/')}}" class="active">Home</a></li>
                         <li><a href="{{url('explore')}}">Explore</a></li>
-                        <li><a href="">Item Details</a></li>
-
                         @if (Route::has('login'))
                                 @auth                  
                                 
