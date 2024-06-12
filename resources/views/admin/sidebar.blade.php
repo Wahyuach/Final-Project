@@ -13,6 +13,6 @@
             <li><a href="{{url('show_book')}}">Show Books</a></li>
           </ul>
         </li>
-        <li><a href="login.html"> <i class="icon-logout"></i>Login page </a></li>
+        <li><a href="{{url('borrow_request')}}"> <i class="icon-logout"></i>Borrow Request </a></li>
 </ul>
 </nav>
