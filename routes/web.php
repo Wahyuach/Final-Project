@@ -43,3 +43,7 @@ Route::get('/add_book', [AdminController::class,'add_book']);
 Route::post('/store_book', [AdminController::class,'store_book']);
 Route::get('/show_book', [AdminController::class,'show_book']);
 Route::get('/delete_book/{id}', [AdminController::class,'delete_book']);
+Route::get('/edit_book/{id}', [AdminController::class,'edit_book']);
+Route::post('/update_book/{id}', [AdminController::class,'update_book']);
+
+
