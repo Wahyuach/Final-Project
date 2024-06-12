@@ -62,22 +62,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($book as $book)
+                            @foreach ($book as $bk)
                                 <tr>
-                                    <td>{{$book->title}}</td>
-                                    <td>{{$book->author_name}}</td>
-                                    <td>{{$book->category_id}}</td>
-                                    <td>{{$book->description}}</td>
-                                    <td>{{$book->quantity}}</td>
-                                    <td>{{$book->book_img}}</td>
+                                    <td>{{$bk->title}}</td>
+                                    <td>{{$bk->author_name}}</td>
+                                    <td>{{$bk->description}}</td>
+                                    <td>{{$bk->quantity}}</td>
+                                    <td>{{$bk->category->cat_title}}</td>
+                                    <td>{{$bk->book_img}}</td>
 
 
 
                                     <td>
-                                        <a href="{{ url('', $book->id) }}"
+                                        <a href="{{ url('edit_book', $bk->id) }}"
                                             class="btn btn-info">Update</a>
 
-                                        <a href="{{ url('delete_book', $book->id) }}"
+                                        <a href="{{ url('delete_book', $bk->id) }}"
                                             class="btn btn-danger">Delete</a>
                                     </td>
                                 </tr>
