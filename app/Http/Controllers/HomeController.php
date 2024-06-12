@@ -6,6 +6,7 @@ use App\Models\Book;
 use Illuminate\Http\Request;
 use App\Models\Borrow;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 
 class HomeController extends Controller
@@ -38,10 +39,34 @@ class HomeController extends Controller
                 $borrow->status = 'Applied';
                 $borrow->save();
                 return redirect()->back()->with('message', 'Request is sent!');
-
             } else {
                 return redirect()->back()->with('message', 'Not Enough Books');
             }
         }
+    }
+
+    public function book_histoire()
+    {
+        if (Auth::id()) {
+
+            $userid = Auth::user()->id;
+            $data = Borrow::where('user_id', '=', $userid)->get();
+            return view('home.book_histoire', compact('data'));
+        }
+    }
+
+
+    public function cancel_req($id)
+    {
+        $data = Borrow::find($id);
+        $data->delete();
+
+        return redirect()->back()->with('message', ' Successfully Canceled');
+    }
+
+    public function explore()
+    {
+        $data = Book::all();
+        return view('home.explore',compact('data'));
     }
 }

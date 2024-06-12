@@ -58,4 +58,13 @@ Route::get('/reject_b/{id}', [AdminController::class, 'reject_b']);
 Route::get('/returned_b/{id}', [AdminController::class, 'returned_b']);
 
 
+Route::get('/book_histoire', [HomeController::class, 'book_histoire']);
+
+
+Route::get('/cancel_req/{id}', [HomeController::class, 'cancel_req']);
+
+Route::get('/explore', [HomeController::class, 'explore']);
+
+
+
 
